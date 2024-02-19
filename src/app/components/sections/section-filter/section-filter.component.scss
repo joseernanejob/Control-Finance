@@ -1,0 +1,24 @@
+@import "../../../styles/typography.scss";
+
+.sectionFilter-container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 36px;
+  padding-top: 20px;
+
+  h2 {
+    font: $title2-bold;
+  }
+
+  .filterList {
+    display: flex;
+    gap: 14px;
+  }
+
+  @media (min-width: 500px) {
+    flex-direction: row;
+    align-items: center;
+    padding-top: 56px;
+  }
+}

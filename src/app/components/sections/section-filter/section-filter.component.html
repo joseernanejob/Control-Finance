@@ -1,0 +1,27 @@
+<section class="sectionFilter-container">
+  <h2>Resumo financeiro</h2>
+  <div class="filterList">
+    <app-radio
+      name="filterInput"
+      id="{{ 'inputAll' }}"
+      value="all"
+      [checked]="true"
+      label="Todos"
+      (onChange)="change($event)"
+    />
+    <app-radio
+      name="filterInput"
+      id="{{ 'inputEntry' }}"
+      value="Entrada"
+      label="Entrada"
+      (onChange)="change($event)"
+    />
+    <app-radio
+      name="filterInput"
+      id="{{ 'inputExit' }}"
+      value="Saída"
+      label="Saída"
+      (onChange)="change($event)"
+    />
+  </div>
+</section>

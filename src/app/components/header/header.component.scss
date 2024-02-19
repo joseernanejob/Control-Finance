@@ -1,0 +1,46 @@
+@import "../../styles/variables.scss";
+@import "../../styles/typography.scss";
+
+header {
+  background-color: $grey5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  padding: 25px 0;
+
+  .header-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+
+    img {
+      width: 156px;
+      transition: width 0.5s ease-in-out normal;
+    }
+
+    button {
+      background-color: $brand1;
+      border: none;
+      transition: 0.5s;
+      height: 32px;
+      padding: 0 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font: $text1-bold;
+      color: $mode;
+
+      &:hover {
+        background-color: $brand2;
+      }
+    }
+
+    @media (min-width: 450px) {
+      flex-direction: row;
+      img {
+        width: 200px;
+      }
+    }
+  }
+}

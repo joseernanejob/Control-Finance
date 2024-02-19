@@ -1,0 +1,58 @@
+<form [formGroup]="formGroup">
+  <div class="inputValue">
+    <label for="">Valor</label>
+    <div
+      class="value-container"
+      [ngClass]="{
+        'is-invalid': submitted && formGroup.controls.value.errors
+      }"
+    >
+      <span
+        [ngClass]="{
+          'is-text-invalid': submitted && formGroup.controls.value.errors
+        }"
+        >R$</span
+      >
+      <input
+        currencyMask
+        formControlName="value"
+        [ngClass]="{
+          'is-text-invalid': submitted && formGroup.controls.value.errors
+        }"
+      />
+      @if (submitted && formGroup.controls.value.errors) {
+      <mat-icon class="icon-error">error_outline</mat-icon>
+      <span class="span-invalid">Valor invalido</span>
+      }
+    </div>
+  </div>
+
+  <div class="type-container">
+    <p>Tipo de valor</p>
+    <div class="input-container">
+      <input
+        type="radio"
+        name="type"
+        id="type-entrada"
+        value="Entrada"
+        checked
+        formControlName="type"
+      />
+      <label for="type-entrada">Entrada</label>
+    </div>
+    <div class="input-container">
+      <input
+        type="radio"
+        name="type"
+        id="type-saida"
+        value="Saída"
+        formControlName="type"
+      />
+      <label for="type-saida">Saída</label>
+    </div>
+  </div>
+  <div class="buttons-container">
+    <button class="btn btn-cancel" (click)="closeModal()">Cancelar</button>
+    <button class="btn btn-insert" (click)="submit()">Inserir valor</button>
+  </div>
+</form>

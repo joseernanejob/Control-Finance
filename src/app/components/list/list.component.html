@@ -1,0 +1,20 @@
+<ul>
+  @for (item of list; track $index) {
+  <li>
+    <p>
+      {{
+        item.value.toLocaleString("pt-BR", {
+          style: "currency",
+          currency: "BRL"
+        })
+      }}
+    </p>
+    <div>
+      <span>{{ listCategory[item.categoryID] }}</span>
+      <button (click)="delete(item.id)">
+        <img src="assets/trash.svg" alt="icone de lixeira" />
+      </button>
+    </div>
+  </li>
+  }
+</ul>

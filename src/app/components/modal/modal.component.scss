@@ -1,0 +1,76 @@
+@import "../../styles/typography.scss";
+@import "../../styles/variables.scss";
+
+dialog {
+  border: none;
+  width: 80%;
+  max-width: 400px;
+  border-radius: 8px;
+  padding: 24px;
+  box-sizing: border-box;
+  animation: fate-out 0.5s forwards;
+
+  .modal-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+
+    .title-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      h2 {
+        font: $title2-bold;
+      }
+
+      button {
+        font: $text1-bold;
+        color: $grey2;
+        border-radius: 4px;
+        background-color: $grey5;
+        border: none;
+        transition: 0.5s;
+        padding: 4px 12px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: $grey4;
+        }
+      }
+    }
+
+    span {
+      font: $text1-regular;
+      color: $grey2;
+      line-height: 21px;
+    }
+  }
+
+  &::backdrop {
+    background-color: rgba(0, 0, 0, 0.6);
+    animation: fate-in 0.5s forwards;
+  }
+}
+
+dialog[open] {
+  animation: fate-in 0.5s forwards;
+}
+
+@keyframes fate-in {
+  to {
+    opacity: 1;
+  }
+  from {
+    opacity: 0;
+  }
+}
+@keyframes fate-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    display: none;
+  }
+}

@@ -1,0 +1,9 @@
+<input
+  type="radio"
+  name="{{ name }}"
+  id="{{ id }}"
+  value="{{ value }}"
+  [checked]="checked"
+  (change)="change($event)"
+/>
+<label [attr.for]="id">{{ label }}</label>

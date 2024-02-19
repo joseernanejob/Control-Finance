@@ -79,29 +79,42 @@ form {
     font: $text1-medium;
   }
 
-  .input-container {
-    label {
-      padding: 10px 20px;
-      background-color: transparent;
-      border: 2px solid $grey5;
-      border-radius: 8px;
-      font: $text1-bold;
-      cursor: pointer;
+  .type-container {
+    display: flex;
+    flex-direction: column;
 
-      transition: 0.5s;
-      &:hover {
-        border-color: $brand1;
-        background-color: $brand1;
-        color: $mode;
+    .input-container {
+      display: flex;
+
+      label {
+        margin-bottom: 5px;
+        min-width: 81px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 20px;
+        background-color: transparent;
+        border: 2px solid $grey5;
+        border-radius: 8px;
+        font: $text1-bold;
+        cursor: pointer;
+
+        transition: 0.5s;
+        &:hover {
+          border-color: $brand1;
+          background-color: $brand1;
+          color: $mode;
+        }
       }
-    }
 
-    input {
-      display: none;
-      &:checked + label {
-        background-color: $brand3;
-        color: $brand1;
-        border-color: $brand1;
+      input {
+        display: none;
+        &:checked + label {
+          background-color: $brand3;
+          color: $brand1;
+          border-color: $brand1;
+        }
       }
     }
   }
@@ -144,13 +157,12 @@ form {
     .type-container {
       display: flex;
       align-items: center;
+      flex-direction: row;
       gap: 12px;
 
-      .inputContainer {
-        width: 82px;
-
+      .input-container {
         label {
-          width: 81px;
+          margin-bottom: 0;
         }
       }
     }

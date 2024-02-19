@@ -1,0 +1,11 @@
+<section class="sectionList-container">
+  <div class="sectionList-total">
+    <h3>Soma dos valores</h3>
+    <p>
+      {{
+        total.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })
+      }}
+    </p>
+  </div>
+  <app-list [list]="list" (deleteItem)="delete($event)" />
+</section>

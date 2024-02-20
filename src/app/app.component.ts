@@ -1,8 +1,15 @@
-import { insertedValues, valuesCategory } from './../services/data';
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { valuesCategory } from './../services/data';
+import {
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+  ViewChild,
+  effect,
+  signal,
+} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
-import { newValue } from './types';
+import { IInsertedValues, newValue } from './types';
 import { SectionFilterComponent } from './components/sections/section-filter/section-filter.component';
 import { SectionListComponent } from './components/sections/section-list/section-list.component';
 import { ModalComponent } from './components/modal/modal.component';
@@ -24,13 +31,23 @@ import { FormInsertValueComponent } from './components/forms/form-insert-value/f
 })
 export class AppComponent implements OnInit {
   title = 'controlFinance';
-  list = insertedValues;
   total!: number;
   inputValue: string = 'all';
+  public listOrigin = signal<IInsertedValues[]>([]);
+  public list = this.listOrigin();
 
   @ViewChild(ModalComponent) modal!: ModalComponent;
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private cdr: ChangeDetectorRef) {
+    const localList = localStorage.getItem('@listValues');
+    this.listOrigin.set(localList ? JSON.parse(localList) : []);
+    this.list = this.listOrigin();
+
+    effect(() => {
+      console.log(this.listOrigin());
+      localStorage.setItem('@listValues', JSON.stringify(this.listOrigin()));
+    });
+  }
 
   ngOnInit(): void {
     this.calcTotal();
@@ -43,17 +60,17 @@ export class AppComponent implements OnInit {
   }
 
   delete(id: number) {
-    const valueIndex = insertedValues.findIndex((element) => element.id === id);
-    insertedValues.splice(valueIndex, 1);
+    this.listOrigin.update((value) =>
+      value.filter((element) => element.id != id)
+    );
     this.filterInput();
-    console.log(insertedValues);
   }
 
   filterInput() {
     if (this.inputValue === 'all') {
-      this.list = insertedValues;
+      this.list = this.listOrigin();
     } else {
-      this.list = insertedValues.filter(
+      this.list = this.listOrigin().filter(
         (item) =>
           item.categoryID ===
           valuesCategory.findIndex((category) => category === this.inputValue)
@@ -75,17 +92,16 @@ export class AppComponent implements OnInit {
 
   onSubmit(data: newValue) {
     const lastId =
-      insertedValues.length > 0
-        ? insertedValues[insertedValues.length - 1].id + 1
+      this.listOrigin().length > 0
+        ? this.listOrigin()[this.listOrigin().length - 1].id + 1
         : 1;
     const newValue = {
       ...data,
       id: lastId,
     };
-    insertedValues.push(newValue);
+    this.listOrigin.set([...this.listOrigin(), newValue]);
     this.filterInput();
     this.closeModal();
-    console.log(insertedValues);
   }
 
   showModal() {

@@ -73,9 +73,13 @@ export class AppComponent implements OnInit {
   }
 
   onSubmit(data: newValue) {
+    const lastId =
+      insertedValues.length > 0
+        ? insertedValues[insertedValues.length - 1].id
+        : 1;
     const newValue = {
       ...data,
-      id: insertedValues[insertedValues.length - 1].id + 1,
+      id: lastId,
     };
     insertedValues.push(newValue);
     this.filterInput();

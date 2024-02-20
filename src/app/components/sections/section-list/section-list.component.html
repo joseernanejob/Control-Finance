@@ -7,5 +7,9 @@
       }}
     </p>
   </div>
-  <app-list [list]="list" (deleteItem)="delete($event)" />
+  <app-list
+    [list]="list"
+    (deleteItem)="delete($event)"
+    (showModal)="openModal()"
+  />
 </section>

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ListComponent } from '../../list/list.component';
-import { insertedValues } from '../../../types';
+import { IInsertedValues } from '../../../types';
 
 @Component({
   selector: 'app-section-list',
@@ -10,12 +10,16 @@ import { insertedValues } from '../../../types';
   styleUrl: './section-list.component.scss',
 })
 export class SectionListComponent {
-  @Input() list!: insertedValues[];
+  @Input() list!: IInsertedValues[];
   @Input() total!: number;
 
+  @Output() showModal = new EventEmitter();
   @Output() onClick = new EventEmitter();
 
   delete(id: number) {
     this.onClick.emit(id);
+  }
+  openModal() {
+    this.showModal.emit();
   }
 }

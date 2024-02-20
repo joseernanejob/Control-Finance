@@ -60,3 +60,32 @@ ul {
     }
   }
 }
+
+.empty-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: $grey5;
+  border: dashed 1.5px $grey3;
+  border-radius: 8px;
+  height: 84px;
+  gap: 16px;
+  transition: 0.5s;
+
+  cursor: pointer;
+
+  h3 {
+    font: $title2-bold;
+    margin: 0;
+  }
+  p {
+    font: $text1-medium;
+    color: $grey2;
+    margin: 0;
+  }
+
+  &:hover {
+    background-color: $grey4;
+  }
+}

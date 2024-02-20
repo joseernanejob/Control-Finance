@@ -18,9 +18,14 @@ export class ListComponent {
   @Input() list!: IList[];
   listCategory = valuesCategory;
 
+  @Output() showModal = new EventEmitter();
   @Output() deleteItem = new EventEmitter();
 
   delete(id: number) {
     this.deleteItem.emit(id);
+  }
+
+  openModal() {
+    this.showModal.emit();
   }
 }

@@ -44,7 +44,6 @@ export class AppComponent implements OnInit {
     this.list = this.listOrigin();
 
     effect(() => {
-      console.log(this.listOrigin());
       localStorage.setItem('@listValues', JSON.stringify(this.listOrigin()));
     });
   }

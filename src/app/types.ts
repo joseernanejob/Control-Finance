@@ -3,7 +3,7 @@ export interface newValue {
   categoryID: number;
 }
 
-export interface insertedValues {
+export interface IInsertedValues {
   id: number;
   value: number;
   categoryID: number;

@@ -1,6 +1,8 @@
+import { IInsertedValues } from '../app/types';
+
 export const valuesCategory = ['Entrada', 'Saída'];
 
-export let insertedValues = [
+export let insertedValues: IInsertedValues[] = [
   {
     id: 1,
     value: 90.0,

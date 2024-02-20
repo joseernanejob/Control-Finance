@@ -46,6 +46,7 @@ export class AppComponent implements OnInit {
     const valueIndex = insertedValues.findIndex((element) => element.id === id);
     insertedValues.splice(valueIndex, 1);
     this.filterInput();
+    console.log(insertedValues);
   }
 
   filterInput() {
@@ -75,7 +76,7 @@ export class AppComponent implements OnInit {
   onSubmit(data: newValue) {
     const lastId =
       insertedValues.length > 0
-        ? insertedValues[insertedValues.length - 1].id
+        ? insertedValues[insertedValues.length - 1].id + 1
         : 1;
     const newValue = {
       ...data,
@@ -84,6 +85,7 @@ export class AppComponent implements OnInit {
     insertedValues.push(newValue);
     this.filterInput();
     this.closeModal();
+    console.log(insertedValues);
   }
 
   showModal() {
